@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,10 +7,13 @@ const UserLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    if(localStorage.getItem('token') === 'false'){
+      navigate('/search')
+    }
+  },[navigate]);
 
-  if(localStorage.getItem('token') === 'false'){
-    navigate('/search')
-  }
 
   const handleLogin = async (e) => {
     e.preventDefault();

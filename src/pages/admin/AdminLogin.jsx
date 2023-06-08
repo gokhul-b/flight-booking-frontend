@@ -1,15 +1,23 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem('token') === 'true'){
+          navigate('/addflights')
+        }
+      },[navigate]);
+
     const handleAdminLogin = (e) => {
         e.preventDefault();
         const query = {email:email,password:password}
         const url = 'https://weak-pear-magpie.cyclic.app/adminlogin';
+        
         const isAuthenticated = async () => {
             try{
                 const response = await axios.get(url,{params: query});
