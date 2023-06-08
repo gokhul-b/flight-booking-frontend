@@ -20,6 +20,7 @@ const UserSignUp = () => {
       localStorage.setItem('token',false)
       navigate('/search')
       console.log('User registered:', userCredential.user);
+      localStorage.setItem('userId',userCredential.user.uid)
     } catch (error) {
       console.log(error);
     }

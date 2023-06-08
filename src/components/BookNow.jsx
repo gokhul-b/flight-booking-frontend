@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const BookNow = () => {
     const[currentFlight,setCurrentFlight] = useState([])
@@ -36,6 +37,7 @@ const BookNow = () => {
             const response = await axios.put(url,{seatBooked: seatBooked});
             const updatedFlightData = response.data;
             setCurrentFlight(updatedFlightData)
+            alert("Your Seats Booked Successfully")
         }catch(error){
             console.error(error);
         }
@@ -46,14 +48,23 @@ const BookNow = () => {
     }
     return(
         <div>
-            <p>Flight Name: {currentFlight.flightname}</p>
-            <p>From: {currentFlight.from}</p>
-            <p>To: {currentFlight.to}</p>
-            <p>Departure: {currentFlight.departure}</p>
-            <p>Price: {currentFlight.price}</p>
-            <p>Seats: {currentFlight.seats}</p>
-            <input type="number" placeholder="No of seats" value={seatBooked} onChange={(e) => setSeatBooked(e.target.value)}/>
-            <button onClick={() => handleBook(currentFlight.id)}>Book</button>
+            <NavBar/>
+            <div className="max-w-md mx-auto mt-10 bg-gray-500">
+                <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col space-y-4">
+                <p>Flight Name: {currentFlight.flightname}</p>
+                <p>From: {currentFlight.from}</p>
+                <p>To: {currentFlight.to}</p>
+                <p>Departure: {currentFlight.departure}</p>
+                <p>Price: {currentFlight.price}</p>
+                <p>Seats: {currentFlight.seats}</p>
+                <input type="number"
+                    placeholder="No of seats" 
+                    value={seatBooked} 
+                    onChange={(e) => setSeatBooked(e.target.value)}
+                    className="border rounded w-full py-2 px-3 text-gray-700"/>
+                <button onClick={() => handleBook(currentFlight.id)} className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Book</button>
+                </div>
+            </div>
         </div>
     )
 }
