@@ -4,7 +4,7 @@ import NavBar from "../../components/NavBar";
 
 const MyBooking = () => {
     const[myFlights,setMyFlights] = useState([]);
-    const url = `http://localhost:5000/mylist/${localStorage.getItem('userId')}`
+    const url = `https://weak-pear-magpie.cyclic.app/mylist/${localStorage.getItem('userId')}`
     useEffect(() => {
         const fetchData = async () => {
             try{

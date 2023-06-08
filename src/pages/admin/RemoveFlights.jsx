@@ -5,7 +5,7 @@ const RemoveFlights = () => {
 
     const[flights,setFlights]=useState([])
 
-    const url = 'http://localhost:5000/getallflights'
+    const url = 'https://weak-pear-magpie.cyclic.app/getallflights'
     useEffect(() =>{
         const getFlights = async () => {            
             try{
@@ -22,7 +22,7 @@ const RemoveFlights = () => {
 
     const handleRemove = async(flightId) => {
         try{
-            const url = `http://localhost:5000/removeflight/${flightId}`
+            const url = `https://weak-pear-magpie.cyclic.app/removeflight/${flightId}`
             const response = await axios.put(url);
             const updatedList = response.data
             setFlights(updatedList)

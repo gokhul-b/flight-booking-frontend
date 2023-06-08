@@ -57,7 +57,7 @@ const AddFlightForm =() => {
         e.preventDefault();
         const flight = {flightname: flightname,from: from,to: to,departureDate: departureDate ,price: price, seats:seats}
         console.log(flight)
-        const url = 'http://localhost:5000/addflights'
+        const url = 'https://weak-pear-magpie.cyclic.app/addflights'
         axios.post(url,flight)
              .then((response) => {console.log("Flight added Successfully!",response.data)})
              .catch((error) => {console.error('Error adding flight',error)})

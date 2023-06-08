@@ -8,7 +8,7 @@ const BookNow = () => {
 
     const {id} = useParams();
     const navigate = useNavigate()
-    const url = `http://localhost:5000/selectedFlight/${id}`
+    const url = `https://weak-pear-magpie.cyclic.app/selectedFlight/${id}`
     useEffect(() => {
         if(!id){
             navigate('/search')
@@ -32,14 +32,14 @@ const BookNow = () => {
 
     const handleBook = async(id) => {
         try{
-            const url = `http://localhost:5000/updateSeatCount/${id}`;
+            const url = `https://weak-pear-magpie.cyclic.app/updateSeatCount/${id}`;
             const response = await axios.put(url,{seatBooked: seatBooked});
             const updatedFlightData = response.data;
             setCurrentFlight(updatedFlightData)
         }catch(error){
             console.error(error);
         }
-        const url1 = "http://localhost:5000/mybookings"
+        const url1 = "https://weak-pear-magpie.cyclic.app/mybookings"
         await axios.post(url1,{flight: currentFlight, booked: seatBooked, userid: localStorage.getItem('userId')})
                    .then((response) => {console.log("Flight added to your MyBooking List",response.data)})
                    .catch((error) => {console.error(error);})

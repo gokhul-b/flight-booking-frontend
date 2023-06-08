@@ -38,7 +38,7 @@ const Search = () => {
     const handleSearch = (e) => {
         e.preventDefault();
         const query = {fromCity:fromCity,toCity:toCity,departue:departue,seatCount:seatCount}
-        const url = 'http://localhost:5000/onSearch'
+        const url = 'https://weak-pear-magpie.cyclic.app/onSearch'
         axios.get(url,{params: query})
              .then((response) => {
                 const flightsAvailable = response.data

@@ -45,7 +45,7 @@ const UserSignUp = () => {
         />
         <button type="submit" className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Signup</button>
       </form>
-      <p>Already have an account? <Link to='/login'>Login</Link></p>
+      <p>Already have an account? <Link to='/'>Login</Link></p>
     </div>
   );
 };

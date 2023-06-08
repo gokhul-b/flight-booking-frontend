@@ -9,7 +9,7 @@ const AdminLogin = () => {
     const handleAdminLogin = (e) => {
         e.preventDefault();
         const query = {email:email,password:password}
-        const url = 'http://localhost:5000/adminlogin';
+        const url = 'https://weak-pear-magpie.cyclic.app/adminlogin';
         const isAuthenticated = async () => {
             try{
                 const response = await axios.get(url,{params: query});
