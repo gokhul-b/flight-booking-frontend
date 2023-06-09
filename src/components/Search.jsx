@@ -86,12 +86,19 @@ const Search = () => {
                 </div>
                 <button type="submit" className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Search</button>
             </form>
-            <div className="flex flex-col space-y-5">
-                <div className="bg-gray-200 rounded m-1 p-2 text-center">
+            <div>
+                <div className="flex flex-col space-y-5">
                     {flights.map((flight,index) => (
-                            <div key={index}>
-                                Flight Name: {flight.flightname}, From: {flight.from}, To: {flight.to}, Departure Date: {flight.departure}, Price: {flight.price}, Seats Available: {flight.seats}
-                                <button onClick={() => handleBook(flight.id)} className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Book now</button>
+                            <div key={index} className="bg-gray-200 rounded m-1 p-2 text-center">
+                                <div className="flex flex-wrap">
+                                    <p className="ml-1">Flight Name: {flight.flightname}</p>
+                                    <p className="ml-1">From: {flight.from}</p>
+                                    <p className="ml-1">To: {flight.to}</p>
+                                    <p className="ml-1">Departure Date: {flight.departure}</p>
+                                    <p className="ml-1">Price: {flight.price}</p>
+                                    <p className="ml-1">Seats Available: {flight.seats}</p>
+                                    <button onClick={() => handleBook(flight.id)} className="bg-blue-500 text-white font-semibold py-1 px-2 rounded mx-3">Book now</button>
+                                </div>
                             </div>
                     ))}
                 </div> 
