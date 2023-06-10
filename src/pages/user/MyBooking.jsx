@@ -32,8 +32,8 @@ const MyBooking = () => {
                                     <p className="ml-1">From: {flight.from} </p>
                                     <p className="ml-1">To: {flight.to} </p>
                                     <p className="ml-1">Departure Date: {flight.departure} </p>
-                                    <p className="ml-1">Price: {flight.price} </p>
-                                    <p>Booked Seats: {flight.seats} </p>
+                                    <p className="ml-1">Total Amount: {flight.price * flight.seats} </p>
+                                    <p className="ml-1">Booked Seats: {flight.seats} </p>
                                 </div>
                             </div>
                         ) 

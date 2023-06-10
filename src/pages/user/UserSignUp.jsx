@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword } from 'firebase/auth';
-import {Link, useNavigate } from 'react-router-dom';
-import { auth } from '../../firebase';
-
+import React, { useEffect, useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
 
 const UserSignUp = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if(localStorage.getItem('token') === 'false'){
-      navigate('/search')
+    if (localStorage.getItem("token") === "false") {
+      navigate("/search");
     }
-  },[navigate]);
+  }, [navigate]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -24,36 +23,48 @@ const UserSignUp = () => {
         password
       );
       // Redirect user to the user dashboard or desired page
-      localStorage.setItem('token',false)
-      navigate('/search')
-      console.log('User registered:', userCredential.user);
-      localStorage.setItem('userId',userCredential.user.uid)
+      localStorage.setItem("token", false);
+      navigate("/search");
+      console.log("User registered:", userCredential.user);
+      localStorage.setItem("userId", userCredential.user.uid);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-center">Signup</h2>
-      <form onSubmit={handleSignup}className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col space-y-4">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          className="border rounded w-full py-2 px-3 text-gray-700"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          className="border rounded w-full py-2 px-3 text-gray-700"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit" className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Signup</button>
-      </form>
-      <p>Already have an account? <Link to='/'>Login</Link></p>
+    <div className="flex items-center justify-center bg-gray-200 h-screen">
+      <div className="max-w-md mx-auto sm:w-[400px]">
+        <h2 className="text-center">Signup</h2>
+        <form
+          onSubmit={handleSignup}
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col space-y-4"
+        >
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            className="border rounded w-full py-2 px-3 text-gray-700"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            className="border rounded w-full py-2 px-3 text-gray-700"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+          >
+            Signup
+          </button>
+        </form>
+        <p className="text-center">
+          Already have an account? <Link to="/">Login</Link>
+        </p>
+      </div>
     </div>
   );
 };
