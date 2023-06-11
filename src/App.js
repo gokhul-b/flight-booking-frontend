@@ -30,7 +30,15 @@ function App() {
         <Route path="/" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignUp />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/*" element={"404 page not found"} />
+        <Route
+          path="/*"
+          element={
+            <div className="flex flex-col">
+              <h5 className="text-center">Oops! Something went wrong</h5>
+              <p className="text-center">Try reloading the page</p>
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

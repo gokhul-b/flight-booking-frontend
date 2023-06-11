@@ -141,6 +141,7 @@ const Search = () => {
 
   return (
     <div className="bg-gray-300 h-full w-full">
+      <h5 className="text-center">Search</h5>
       <div className="max-w-md mx-auto mt-10 ">
         <form
           onSubmit={handleSearch}
