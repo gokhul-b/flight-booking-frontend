@@ -35,11 +35,11 @@ const UserSignUp = () => {
   return (
     <div className="flex items-center justify-center bg-gray-200 h-screen">
       <div className="max-w-md mx-auto sm:w-[400px]">
-        <h2 className="text-center">Signup</h2>
         <form
           onSubmit={handleSignup}
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col space-y-4"
         >
+          <h2 className="text-center">Sign up</h2>
           <input
             type="email"
             placeholder="Email"
