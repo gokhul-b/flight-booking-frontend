@@ -144,64 +144,66 @@ const Search = () => {
       <div className="max-w-md mx-auto ">
         <form
           onSubmit={handleSearch}
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col space-y-4"
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col justify-center"
         >
           {/* <h5 className="text-start ml-1">Search</h5> */}
-          <div className="mb-4 flex flex-col space-y-2">
-            <label htmlFor="from">From: </label>
-            <select
-              name="from"
-              value={fromCity}
-              onChange={(e) => setFromCity(e.target.value)}
-              className="border rounded w-full py-2 px-3 text-gray-700"
-            >
-              <option value="">start</option>
-              {fromOptions.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="mb-4 flex flex-col space-y-2">
-            <label htmlFor="to">To: </label>
-            {fromCity && (
+          <div className="grid grid-cols-2 gap-7">
+            <div className="flex flex-col space-y-2">
+              <label htmlFor="from">From: </label>
               <select
-                name="to"
-                value={toCity}
-                onChange={(e) => setToCity(e.target.value)}
+                name="from"
+                value={fromCity}
+                onChange={(e) => setFromCity(e.target.value)}
                 className="border rounded w-full py-2 px-3 text-gray-700"
               >
-                <option value="">end</option>
-                {toOptions.map((option, index) => (
+                <option value="">start</option>
+                {fromOptions.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
                   </option>
                 ))}
               </select>
-            )}
-          </div>
-          <div className="mb-4 flex flex-col space-y-2">
-            <label htmlFor="date">Departure: </label>
-            <input
-              type="date"
-              value={departue}
-              onChange={(e) => setDeparture(e.target.value)}
-              className="border rounded w-full py-2 px-3 text-gray-700"
-            />
-          </div>
-          <div className="mb-4 flex flex-col space-y-2">
-            <label htmlFor="seats">Seats: </label>
-            <input
-              type="number"
-              value={seatCount}
-              onChange={(e) => setSeatCount(e.target.value)}
-              className="border rounded w-full py-2 px-3 text-gray-700"
-            />
+            </div>
+            <div className="mb-4 flex flex-col space-y-2">
+              <label htmlFor="to">To: </label>
+              {fromCity && (
+                <select
+                  name="to"
+                  value={toCity}
+                  onChange={(e) => setToCity(e.target.value)}
+                  className="border rounded w-full py-2 px-3 text-gray-700"
+                >
+                  <option value="">end</option>
+                  {toOptions.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </div>
+            <div className="mb-4 flex flex-col space-y-2">
+              <label htmlFor="date">Departure: </label>
+              <input
+                type="date"
+                value={departue}
+                onChange={(e) => setDeparture(e.target.value)}
+                className="border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div className="mb-4 flex flex-col space-y-2">
+              <label htmlFor="seats">Seats: </label>
+              <input
+                type="number"
+                value={seatCount}
+                onChange={(e) => setSeatCount(e.target.value)}
+                className="border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
           </div>
           <button
             type="submit"
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+            className="max-w-fit bg-blue-500 text-white font-semibold py-2 px-4 rounded self-center mt-3"
           >
             Search
           </button>
@@ -251,12 +253,14 @@ const Search = () => {
                       <td className="px-2 py-2 sm:px-6 sm:py-4 font-medium text-gray-900 sm:whitespace-nowrap">
                         {flight.seats}
                       </td>
-                      <button
-                        onClick={() => handleBook(flight.id)}
-                        className="px-2 py-2 sm:px-6 sm:py-4 font-medium underline text-green-700 decoration-blue-700 sm:whitespace-nowrap"
-                      >
-                        Book
-                      </button>
+                      <td>
+                        <button
+                          onClick={() => handleBook(flight.id)}
+                          className="px-2 py-2 sm:px-6 sm:py-4 font-medium underline text-green-700 decoration-blue-700 sm:whitespace-nowrap"
+                        >
+                          Book
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 );
