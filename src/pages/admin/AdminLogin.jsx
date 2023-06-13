@@ -42,33 +42,35 @@ const AdminLogin = () => {
   //     localStorage.setItem('token',true)
   // }
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-center">Admin Login</h2>
-      <form
-        onSubmit={handleAdminLogin}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col space-y-4"
-      >
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          className="border rounded w-full py-2 px-3 text-gray-700"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          className="border rounded w-full py-2 px-3 text-gray-700"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+      <div className="max-w-md mx-auto sm:w-[400px]">
+        <form
+          onSubmit={handleAdminLogin}
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col space-y-4"
         >
-          Login
-        </button>
-      </form>
+          <h2 className="text-center font-medium">Admin Login</h2>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            className="border rounded w-full py-2 px-3 text-gray-700"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            className="border rounded w-full py-2 px-3 text-gray-700"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
