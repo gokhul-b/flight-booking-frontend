@@ -6,6 +6,7 @@ import { auth } from "../../firebase";
 const UserSignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const UserSignUp = () => {
       console.log("User registered:", userCredential.user);
       localStorage.setItem("userId", userCredential.user.uid);
     } catch (error) {
+      setError(error.message);
       console.log(error);
     }
   };
@@ -54,6 +56,7 @@ const UserSignUp = () => {
             className="border rounded w-full py-2 px-3 text-gray-700"
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p>{error}</p>}
           <button
             type="submit"
             className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"

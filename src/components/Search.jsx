@@ -186,6 +186,7 @@ const Search = () => {
               <label htmlFor="date">Departure: </label>
               <input
                 type="date"
+                min={new Date().toISOString().split("T")[0]}
                 value={departue}
                 onChange={(e) => setDeparture(e.target.value)}
                 className="border rounded w-full py-2 px-3 text-gray-700"

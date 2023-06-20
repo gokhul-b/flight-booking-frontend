@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +28,8 @@ const UserLogin = () => {
       console.log("User logged in:", userCredential.user.uid);
       localStorage.setItem("userId", userCredential.user.uid);
     } catch (error) {
+      // alert(error);
+      setError(error.message);
       console.log(error);
     }
   };
@@ -53,6 +56,7 @@ const UserLogin = () => {
             className="border rounded w-full py-2 px-3 text-gray-700"
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p>{error}</p>}
           <button
             type="submit"
             className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
