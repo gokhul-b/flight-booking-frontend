@@ -9,8 +9,8 @@ const BookNow = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const url = `https://weak-pear-magpie.cyclic.app/selectedFlight/${id}`;
   useEffect(() => {
+    const url = `https://weak-pear-magpie.cyclic.app/selectedFlight/${id}`;
     if (!id) {
       navigate("/search");
     }

@@ -5,26 +5,29 @@ import NavBar from "../../components/NavBar";
 const MyBooking = () => {
   const [myFlights, setMyFlights] = useState([]);
   const [availableFilghts, setAvailableFilghts] = useState([]);
+  const [isFlightIdFetched, setIsFlightIdFetched] = useState(false);
+
+  const urlForIds = "https://weak-pear-magpie.cyclic.app/getAllids";
+  const getCurrentFlights = async () => {
+    try {
+      const response = await axios.get(urlForIds);
+      const objects = response.data;
+      const ids = [];
+      for (let i = 0; i < objects.length; i++) {
+        ids.push(objects[i].id);
+      }
+      setAvailableFilghts(ids);
+      setIsFlightIdFetched(true);
+      console.log(ids);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const url = `https://weak-pear-magpie.cyclic.app/mylist/${localStorage.getItem(
       "userId"
     )}`;
-    const urlForIds = "https://weak-pear-magpie.cyclic.app/getAllids";
-    const getCurrentFlights = async () => {
-      try {
-        const response = await axios.get(urlForIds);
-        const objects = response.data;
-        const ids = [];
-        for (let i = 0; i < objects.length; i++) {
-          ids.push(objects[i].id);
-        }
-        setAvailableFilghts(ids);
-        console.log(ids);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     const fetchData = async () => {
       try {
         const response = await axios.get(url);
@@ -33,14 +36,18 @@ const MyBooking = () => {
         const selectedFlights = myBookings.filter((flight) =>
           availableFilghts.includes(flight.flightid)
         );
+        console.log(selectedFlights);
         setMyFlights(selectedFlights);
       } catch (error) {
         console.error(error);
       }
     };
-    getCurrentFlights();
-    fetchData();
-  }, []);
+    if (isFlightIdFetched) {
+      fetchData();
+    } else {
+      getCurrentFlights();
+    }
+  }, [isFlightIdFetched]);
 
   return (
     <div>
