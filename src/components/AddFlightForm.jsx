@@ -199,6 +199,17 @@ const AddFlightForm = () => {
   const toOptions = getToOptions(from);
   // console.log(toOptions);
 
+  const getCurrentDateTime = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const flight = {
@@ -300,6 +311,7 @@ const AddFlightForm = () => {
               <input
                 type="datetime-local"
                 value={departureDate}
+                min={getCurrentDateTime()}
                 onChange={(e) => setDepartureDate(e.target.value)}
                 className="border rounded w-full py-2 px-3 text-gray-700 mt-2"
               />
