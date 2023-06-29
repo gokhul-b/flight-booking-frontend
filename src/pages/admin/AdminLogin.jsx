@@ -5,33 +5,48 @@ import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isTokenFixed, setIsTokenFixed] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("token") === "true") {
+    if (isTokenFixed) {
       navigate("/addflights");
     }
-  }, [navigate]);
+  }, [isTokenFixed, navigate]);
 
   const handleAdminLogin = (e) => {
     e.preventDefault();
     const query = { email: email, password: password };
     const url = "https://weak-pear-magpie.cyclic.app/adminlogin";
-
+    const doNavigate = () => {
+      setTimeout(() => {
+        navigate("/addflights");
+      }, 2000);
+      localStorage.setItem("token", true);
+    };
     const isAuthenticated = async () => {
       try {
         const response = await axios.get(url, { params: query });
         const bool = response.data;
         console.log(bool);
         if (bool) {
-          setTimeout(() => {
-            navigate("/addflights");
-          }, 2000);
-          localStorage.setItem("token", true);
+          // localStorage.setItem("token", true);
+          setIsTokenFixed(true);
+          // navigate("/addflights");
+          doNavigate();
         } else {
           setEmail("");
           setPassword("");
         }
+        // if (bool) {
+        //   setTimeout(() => {
+        //     navigate("/addflights");
+        //   }, 2000);
+        //   localStorage.setItem("token", true);
+        // } else {
+        //   setEmail("");
+        //   setPassword("");
+        // }
       } catch (error) {
         console.error(error);
       }

@@ -197,7 +197,7 @@ const AddFlightForm = () => {
   };
   const fromOptions = getFromOptions(flightname);
   const toOptions = getToOptions(from);
-  console.log(toOptions);
+  // console.log(toOptions);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -209,7 +209,7 @@ const AddFlightForm = () => {
       price: price,
       seats: seats,
     };
-    console.log(flight);
+    // console.log(flight);
     const url = "https://weak-pear-magpie.cyclic.app/addflights";
     axios
       .post(url, flight)
